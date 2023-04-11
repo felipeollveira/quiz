@@ -9,7 +9,6 @@ quiz.textContent = title;
 let modal = document.querySelector('.modal')
 function displiz(){
     let final = document.getElementById('final')
-    
     modal.style.display='flex'
     final.style.display='grid'
  }
