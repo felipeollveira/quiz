@@ -62,7 +62,7 @@ main{
 
 .respostas{
     display: grid;
-    gap: 16px;
+    gap: 6px;
     text-align: justify;
 }
 
@@ -71,7 +71,7 @@ main{
     background: rgb(233, 233, 233);
     color: rgba(0, 0, 0, 0.761);
     border: 1px solid rgba(0, 0, 0, 0.162) ;
-    padding: 8px;
+    padding: 14px;
     font-size: 10pt;
     display: flex;
     align-items: center;
@@ -94,6 +94,24 @@ main{
 }.btn button:hover{
     background-color:  rgb(0, 83, 138);transform: translateY(-1px);
 }
+@keyframes effect-size{
+    0% {
+        transform: scale(0);
+    }
+    100% {
+         transform: scale(1)
+    }
+}
+@keyframes effect-opacity{
+    0% {
+        opacity: 0.0;
+    }
+    100% {
+         opacity: 1;
+    }
+}
+
+
 .modal{
      position: fixed;
      display: none;
@@ -109,7 +127,15 @@ main{
 	justify-content: center;
 	justify-items: center;
 	align-items: center;
-    animation: go-back 15ms;
+    animation: effect-opacity 1s;
+    transition-delay: 100ms;
+   
+}.back{
+    animation: effect-size 540ms;
+    transition-delay: 60ms;
+    background-color: rgba(0, 0, 0, 0.512);
+    padding: 16px;
+    border-radius: 3px;
 }
 #final{
    	margin: auto;
@@ -122,7 +148,6 @@ main{
 	justify-content: center;
 	justify-items: center;
 	align-items: center;
-
     display: none;
     align-items: center;
     width: auto;
@@ -133,41 +158,48 @@ main{
     gap: 5px;
     border-radius: 4px;
     padding: 15px;
-    animation: go-back 15ms;
-    }.final section{
-    border: 1px solid white;
+    }.back section{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
   }h3{
     border-bottom: 1px solid rgba(255, 255, 255, 0.625); 
     font-size: 8pt; width: 100%;text-align: center;
     padding: 3px;color: aliceblue;
   }#placar{
-    font-size: 20pt;
+    font-size: 22pt;
     color: rgb(255, 255, 255);
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.221);
+    border-radius: 4px;
+   width: max-content;
   }h2{
-    background-color: rgb(255, 68, 0);
-    color: white;
+    color: rgb(255, 255, 255);
     border-radius: 3px;
     padding: 5px;
     margin-bottom: 10px;
-  }
-
-  .btnHome{
-    background-color: orangered;
-    border: none;
-    padding: 5px;
-    color: white;
-    border: 3px;
-    cursor: pointer;
-    font-size: 8pt;
-    width: 45%;
-    transition: 300ms;
-  }
-  .btnHome:hover{
-    width: 50%;
-  }p{color: white;font-size: 8pt; margin-bottom: 20px;
-}.modal a{
-    color: rgb(255, 94, 0);
-}
+     }
+     .icons{
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        gap: 4px;
+        width: auto;
+     }
+    .home{
+        size: 15pt;
+        font-size: 55pt;
+        height: 20px;
+        padding-top: 0px;
+        cursor: pointer;
+        padding: 5px;
+        }.home:hover{background-color: rgba(74, 74, 74, 0.090);}
+    .refresh{
+        height: 22px;
+        cursor: pointer;
+        padding: 5px;
+    }.refresh:hover{background-color: rgba(74, 74, 74, 0.090);}
 
   .resultado{
     display: grid;
@@ -182,6 +214,9 @@ main{
 
 
 @media screen and (min-width:0px) and (max-width:768px) {
+    body{
+        overflow: hidden;
+    }
     #quiz{
         display:inline;
         gap: 10px;
@@ -190,7 +225,8 @@ main{
     main{
         margin: 5px;
         width: 100%;
-        height: 100%;
+        height: max-content;
+       
     }main div{border-radius: 0px;}
 
     .content{
