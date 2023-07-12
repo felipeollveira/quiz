@@ -8,14 +8,14 @@ main{
     }
 
 #quiz{
-    background-color: rgb(239, 239, 239); 
+    /*background-color: #03223f;*/
+    background-color: rgba(0, 0, 0, 0.42);
     border-radius: 6px;
     padding: 20px;
     display: grid;
-    gap: 3vh;
-    
-    
-    }
+    gap: 2vh;
+     }
+     
     .quiz-animation{
     animation: go-back 1s;
     transition-delay: 90ms;
@@ -35,47 +35,47 @@ main{
 
     
 .quiz-header{
-     border-bottom: 1px solid rgba(0, 0, 0, 0.328);
-    letter-spacing: -1px;
-     color: rgba(0, 0, 0, 0.8);
+     color: rgba(255, 255, 255, 0.8);
      height: auto;
      font-size: 10pt;
      width:auto;
     justify-items: center;
      align-items: center;
-    display: flex;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+     display: flex;
+    
 }.quiz-header h6{ padding-bottom: 3px; justify-content: flex-end; display: flex; width: 100%;}
-.quiz-header h5{ padding-bottom: 3px;width:190%; display: flex; cursor: pointer;}
-
+.quiz-header h5{ padding-bottom: 3px;width:150%; display: flex; font-family: thin; font-size: 6pt;}
 
 .pergunta h5{
-    font-size: 10pt;
+    font-size: 14pt;
     width: auto; 
+    text-align: justify;
   
 }
 .pergunta{ 
-    display: flex;
-    color: rgb(45, 45, 45);
-   
-}
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+    color: rgb(255, 255, 255);
+   }
 
 .respostas{
     display: grid;
     gap: 6px;
     text-align: justify;
+    font-family: light;
 }
 
 .respostas span{
-    border-radius: 6px;
-    background: rgb(233, 233, 233);
-    color: rgba(0, 0, 0, 0.761);
-    border: 1px solid rgba(0, 0, 0, 0.162) ;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.057);
+    color: rgba(255, 255, 255, 0.681);
     padding: 14px;
     font-size: 10pt;
     display: flex;
     align-items: center;
-}.respostas span:hover{ background: rgba(200, 199, 199, 0.595); cursor: pointer;color: black;}
+    transition-duration: 90ms;
+}.respostas span:hover{ color:rgb(255, 255, 255);background: rgba(0, 0, 0, 0.417); cursor: pointer;transform: translateY(-3px);}
 
 .btn{
     width: 100%;
@@ -194,13 +194,8 @@ main{
         padding-top: 0px;
         cursor: pointer;
         padding: 5px;
-        }.home:hover{background-color: rgba(74, 74, 74, 0.090);}
-    .refresh{
-        height: 22px;
-        cursor: pointer;
-        padding: 5px;
-    }.refresh:hover{background-color: rgba(74, 74, 74, 0.090);}
-
+        filter: brightness(80%);
+        }.home:hover{filter: brightness(100);}
   .resultado{
     display: grid;
     justify-content: center;
@@ -214,18 +209,23 @@ main{
 
 
 @media screen and (min-width:0px) and (max-width:768px) {
+    *{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
     body{
-        overflow: hidden;
+           
     }
     #quiz{
         display:inline;
         gap: 10px;
         border-radius: 0px;
+        width: auto;
+               
     }
     main{
-        margin: 5px;
-        width: 100%;
-        height: max-content;
+        margin: 0px;
+        width: auto;
+        height: 100vh;
        
     }main div{border-radius: 0px;}
 
@@ -238,37 +238,30 @@ main{
         font-size: 6pt;
     }
    .pergunta h5{
-    font-size: 10pt;
-    text-align: justify;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    background-color: rgba(170, 170, 170, 0.026);
+    font-size: 14pt;
+    text-align:justify;
     height: auto;
     padding: 10px;
     border-radius: 8px;
    }
-     .respostas span{
-    font-size: 8pt;
+    .respostas span{
+    font-size: 12pt;
     height: auto;
+    width: auto;
     padding: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
       }
 
     .btn{
         justify-content: flex-start;
     }
-    .quiz-header h5{
-        font-size: 6pt;
-        
-    }
+
     .respostas{
         display: grid;
         gap: 2px;
         height: 70%;
          }
-      .final{
-      
-    }
+    
     }
 
 

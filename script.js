@@ -42,26 +42,31 @@ let pontos = 0
 let placar = document.querySelector('#placar')
 
 // ENDERECO DO ARQUIVO JSON
-const url = 'data.json'
+let link = document.getElementById('url')
+
+function quis1(){
+  link.textContent = 'data.json'
+} 
+  
+ // VERFICAÇÃO DO ENDERECO DO ARQUIVO JSON
+ const url = 'data.json'
+//FIM DA VERFICAÇÃO
 
 function pegarDados(i) {
+ 
 
+  
   fetch(url).then(response =>{
-      
         return response.json();
-
       }).then(data => {
-
         if(data.erro) {
           console.log("Erro ao acessar o JSON")
           return
         }
-        
-        // passar o quantidade de questoes para a variavel
+         // passar o quantidade de questoes para a variavel
         let qtdQuestoes = (data.questoes.length)-1
         // escrver a qtdQuestoes para total
         total.textContent = parseInt(qtdQuestoes)
-        
         // passe o valor de i no parametro
         atribuirDados(data, i)
 
@@ -71,7 +76,7 @@ function pegarDados(i) {
 function atribuirDados(data, i) {
   if(i >= data.questoes.length) {
     i = 1
-   
+    
   }
     let qtdQuestoes = (data.questoes.length)-1
     nQuestao.textContent = data.questoes[i].numQuestao + '/' + qtdQuestoes
@@ -88,7 +93,17 @@ function atribuirDados(data, i) {
     let certa = document.querySelector('#correct')
     certa.value = data.questoes[i].correta
     //console.log(resposta)
+    return 0;
 }
+
+let bar = document.getElementById("progress");
+let ba = 0
+function progresso() {
+    ba = ba + 10;
+    bar.style.width = ba + "%"
+   }
+
+
 
 // COMECAR O QUIZ
 let questaoAtual = 1
@@ -97,10 +112,10 @@ pegarDados(1)
 function proximaQuestao(numQuestao) {
   let proxima = parseInt(numQuestao)
   pegarDados(proxima)
-}
+  }
 
 function verificarSeAcertou(nQuestao, resposta) {
-
+  progresso()
   let numeroDaQuestao = nQuestao.value
   //console.log("Questão " + numeroDaQuestao)
 
@@ -139,11 +154,10 @@ function verificarSeAcertou(nQuestao, resposta) {
         proximaQuestao(proxima)
     }
   }, 50)
-
+  return 0;
 }
 
 function fimDoJogo() {
-
     placar.textContent ='Acertos: '+pontos+'/100'
     if (pontos == 0) {
         console.log("Você não acertou nenhuma questão.")
@@ -159,9 +173,14 @@ function fimDoJogo() {
       proximaQuestao(1) }
 
     function toHome(){
-        intro.style.display = 'grid'
-        desen.style.display = 'none'
-        final.style.display ='none'
-        modal.style.display = 'none'
-        rei()
+      location.reload();
     }
+
+
+
+
+    function mood(){
+      alert('Ok')
+    }
+
+  
