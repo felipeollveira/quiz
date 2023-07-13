@@ -1,20 +1,4 @@
 
-@font-face {
-    font-family: "regular";
-    src: url('/fonts/Raleway-Regular.ttf');
-}
-@font-face {
-    font-family:"medium";
-    src: url('/fonts/Raleway-Medium.ttf');
-}
-@font-face {
-    font-family:"light";
-    src: url('/fonts/Raleway-Light.ttf');
-}
-@font-face {
-    font-family:"thin";
-    src: url('/fonts/Raleway-ThinItalic.ttf');
-}
 
 
 strong{
@@ -30,7 +14,7 @@ header h1{
 }
 
 *{
-    font-family: regular;;
+    font-family: Raleway;;
     margin: 0;
     padding: 0;
 }
