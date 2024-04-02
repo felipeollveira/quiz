@@ -1,22 +1,34 @@
 
-const intro = document.getElementById('header')
-const desen = document.getElementById('main')
+const menuInicial = document.getElementById('header')
+const gameStart = document.getElementById('main')
 const img = document.getElementById('img')
 /* titulo do quiz */
 const title = document.querySelector('#bra').textContent;
 const quiz = document.getElementById('quiz-name');
 quiz.textContent = title;
 let modal = document.querySelector('.modal')
+
+
 function displiz(){
     let final = document.getElementById('final')
     modal.style.display='flex'
     final.style.display='grid'
  }
+//localStorage.clear()
 
-function quizBR(){
-    intro.style.display = 'none'
-    desen.style.display = 'grid'
-         
+const nomeJogador = localStorage.getItem("nomeJogador");
+function clicouNoQuiz(){
+
+  if (!nomeJogador) {
+      popNovoJogador.style.display = 'grid' 
+      return 0;
+  } 
+   
+    console.log(localStorage)
+    menuInicial.style.display = 'none'
+    gameStart.style.display = 'grid'
+  
+    pegarDados(1)
 }
 
 /* App JS com JSON */
@@ -41,38 +53,29 @@ numero.textContent  = 1
 let pontos = 0
 let placar = document.querySelector('#placar')
 
-// ENDERECO DO ARQUIVO JSON
-let link = document.getElementById('url')
-
-function quis1(){
-  link.textContent = '.data.json'
-} 
-  
+ 
  // VERFICAÇÃO DO ENDERECO DO ARQUIVO JSON
  const url = './js/data.json'
 //FIM DA VERFICAÇÃO
 
 function pegarDados(i) {
- 
-
+    fetch(url).then(response =>{
+          return response.json();
+        }).then(data => {
+          if(data.erro) {
+            console.log("Erro ao acessar o JSON")
+            return
+          }
+           // passar o quantidade de questoes para a variavel
+          let qtdQuestoes = (data.questoes.length)-1
+          // escrver a qtdQuestoes para total
+          total.textContent = parseInt(qtdQuestoes)
+          // passe o valor de i no parametro
+          atribuirDados(data, i)
   
-  fetch(url).then(response =>{
-        return response.json();
-      }).then(data => {
-        if(data.erro) {
-          console.log("Erro ao acessar o JSON")
-          return
-        }
-         // passar o quantidade de questoes para a variavel
-        let qtdQuestoes = (data.questoes.length)-1
-        // escrver a qtdQuestoes para total
-        total.textContent = parseInt(qtdQuestoes)
-        // passe o valor de i no parametro
-        atribuirDados(data, i)
+        })
+  } // fim pegarDados
 
-      })
-      
-} // fim pegarDados
 function atribuirDados(data, i) {
   if(i >= data.questoes.length) {
     i = 1
@@ -98,6 +101,7 @@ function atribuirDados(data, i) {
 
 let bar = document.getElementById("progress");
 let ba = 0
+
 function progresso() {
     ba = ba + 10;
     bar.style.width = ba + "%"
@@ -106,8 +110,6 @@ function progresso() {
 
 
 // COMECAR O QUIZ
-let questaoAtual = 1
-pegarDados(1)
 
 function proximaQuestao(numQuestao) {
   let proxima = parseInt(numQuestao)
@@ -158,17 +160,28 @@ function verificarSeAcertou(nQuestao, resposta) {
 }
 
 function fimDoJogo() {
-    placar.textContent ='Acertos: '+pontos+'/100'
-    if (pontos == 0) {
-        console.log("Você não acertou nenhuma questão.")
-    } else {
-        console.log("É...")
-    } if(pontos == 100){
-        console.log('UAU!') 
-    }
-  
       
-    } function rei(){
+   
+    if (pontos == 0) {
+      placar.textContent =+pontos+' de 100'
+    } else {
+      placar.textContent =`${nomeJogador} você acertou : `+pontos+' de 100'
+    } if(pontos > 70){
+      placar.textContent =`Parabéns ${nomeJogador}! Acertou `+pontos+' de 100'
+    }
+     
+    localStorage.setItem("pontosJogador", pontos);
+
+const pontosArmazenados = localStorage.getItem("pontosJogador");
+const pontosview = document.getElementById('pontos');
+pontosview.textContent = `${pontosArmazenados ? pontosArmazenados : 0}/100`;
+
+    
+  } 
+
+    
+    
+    function rei(){
         pontos = 0 // zerar placar
       proximaQuestao(1) }
 
