@@ -7,7 +7,7 @@ const title = document.querySelector('#bra').textContent;
 const quiz = document.getElementById('quiz-name');
 quiz.textContent = title;
 let modal = document.querySelector('.modal')
-
+let nameJogador = document.getElementById('nameJogador');
 
 function displiz(){
     let final = document.getElementById('final')
@@ -17,6 +17,9 @@ function displiz(){
 //localStorage.clear()
 
 const nomeJogador = localStorage.getItem("nomeJogador");
+nomeJogador !== null ? nameJogador.textContent = `Escolha um quiz` : nameJogador.textContent = 'Bem-vindo';
+let avatar = document.getElementById('avatar').textContent = nomeJogador[0]
+
 function clicouNoQuiz(){
 
   if (!nomeJogador) {
@@ -24,7 +27,8 @@ function clicouNoQuiz(){
       return 0;
   } 
    
-    console.log(localStorage)
+    //console.log(localStorage)
+    
     menuInicial.style.display = 'none'
     gameStart.style.display = 'grid'
   
@@ -172,14 +176,15 @@ function fimDoJogo() {
      
     localStorage.setItem("pontosJogador", pontos);
 
-const pontosArmazenados = localStorage.getItem("pontosJogador");
-const pontosview = document.getElementById('pontos');
-pontosview.textContent = `${pontosArmazenados ? pontosArmazenados : 0}/100`;
+
 
     
   } 
+  
+  const pontosArmazenados = localStorage.getItem("pontosJogador");
+const pontosview = document.getElementById('pontos');
+pontosview.textContent = `${pontosArmazenados ? pontosArmazenados : 0}/100`;
 
-    
     
     function rei(){
         pontos = 0 // zerar placar

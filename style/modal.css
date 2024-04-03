@@ -1,3 +1,14 @@
+:root{
+  color: #151563;
+} 
+.pontuacao{
+  font-size: 10pt;
+  font-weight: 100;
+  color: #000000;
+  opacity: 0.6;
+}
+
+
 
     .me{
         background-color: rgb(255, 98, 0);
@@ -80,6 +91,12 @@
     position: relative;
     top: 14px;
     width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12pt;
+    font-weight: bolder;
   }
   .name-large {
     color: #dbd8ef;
