@@ -7,50 +7,70 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 999;
+ 
 }
 
 .popup {
   display: grid;
+  background-color: #e6e6e6;
   position: fixed;
   left: 50%;
   top: 50%;
-  min-width: 275px;
+  min-width: 270px;
   transform: translate(-50%, -50%);
-  background-color: #0052d7;
-  padding: 14px;
+
+
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.306);
   z-index: 1000; 
+  transition: opacity 0.5s ease-out; 
 }
+
+.pheader{
+  background-color: #00000023;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.155);
+  padding: 8px;
+  border-radius: 6px 6px 0px 0px;
+  
+}
+
 
 .popup-content {
   text-align: center;
+  padding: 8px;
 }
 
 .close {
-  color: white;
+  font-size: 10pt;
+  opacity: 0;
+  font-weight: 100;
+  color: rgb(245, 0, 0);
   cursor: pointer;
 }
 
   
   .popup-content {
     text-align: center;
+
   }
   .fl{
     display: grid;
-    grid-template-columns: 95% 5%;
+    align-items: center;
+    grid-template-columns: 94% 6%;
   }
 
-  .popup-content p:first-child{
-    color: rgba(255, 255, 255, 0.414);
+  .fl p {
+    color: rgba(0, 0, 0, 0.774);
     width: auto;
     text-align: left;
-   font-size: 10pt;
+   font-size: 8pt;
    font-weight: 400;
   }
 
+ 
+
   .popup-content article{
-    color: rgba(255, 255, 255, 0.834);
+    color: rgba(0, 0, 0, 0.834);
     width: auto;
     text-align: left;
     font-size: 10pt;
@@ -58,44 +78,62 @@
 
   }
   .popup article{
-    color: rgba(255, 255, 255, 0.834);
+    color: rgba(0, 0, 0, 0.834);
     width: auto;
     text-align: left;
     font-size: 10pt;
   }
+  .popup article:first-child{
+    font-size: 14pt;
+    font-weight: bolder;
+  }
+  .popup article:last-child{
+    font-size: 8pt;
+    text-align: center;
+    font-weight: 800;
+    }
 
   .button-container {
       width: 18px; 
       height: 18px; 
-      background-color: rgba(255, 255, 255, 0.108);
+      background-color: rgba(0, 0, 0, 0.593);
       border-radius: 50%; 
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
     }
     
     .close {
-    
     color: white;
-    cursor: pointer;
   }
 
   .popup-content form{
     display: flex;
+    gap: 4px;
+    transform: translateY(12px);
+  
   }
   
   input[type="text"] {
+    border-radius: 4px;
     width: max-content;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.153);
     padding: 10px;
     height: auto;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     border: none;
-    outline: none;
+    outline: 1px solid rgba(0, 0, 0, 0.101);
+  }
+  input[type="text"]::placeholder{
+    color: rgba(2, 2, 2, 0.21);
   }
 
   
   button {
+    border-radius: 4px;
     padding: 10px;
     width: auto;
     height: max-content ;

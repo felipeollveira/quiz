@@ -6,15 +6,20 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
 const closePopup = () => {
     popNovoJogador.style.display = 'none'
+    popNovoJogador.classList.add('hidden')
 }
 
 const btnNovoJogador = () => {
     let nomeNovoJogador = document.querySelector('input[type=text]').value;
     nomeNovoJogador != '' ? closePopup() : 0;
-
-    localStorage.setItem("nomeJogador", nomeNovoJogador);
+    nomeNovoJogadorFormatado = nomeNovoJogador.trim('')
+    localStorage.setItem("nomeJogador", nomeNovoJogadorFormatado);
     localStorage.setItem("pontosJogador", 0);
 
     return 1
 
+}
+
+function limparLocalStorageEAtualizar(){
+    localStorage.clear();
 }

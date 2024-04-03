@@ -28,14 +28,14 @@
 				<div class="to">
 					<div class="to-contents">
 					<div class="top">
-							<div class="avatar-large me" id="avatar"></div>
+							<div class="avatar-large me" id="avatar" onclick=""></div>
 						<div class="name-large"><span id="nameJogador"></span>!</div>
 					
 						
 						
 						<div class="playerAndX">
 							
-						<div class="player">
+						<div class="player" onclick="limparLocalStorageEAtualizar()" >
 							🧑
 						</div>
 						<div class="x-touch" onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
@@ -89,27 +89,31 @@
 		</header>
 		<div class="overlay" id="popupJogador">
 		<div class="popup">
-			<div class="popup-content">
-
+			<div class="pheader">
 				<div class="fl">
-					<p>Identidade do jogador</p>
-					<div class="button-container">
-						<span class="close" onclick="closePopup()">&times;</span>
+					<p><strong>🧑</strong>Novo jogador</p>
+					<div class="button-container" onclick="closePopup()">
+						<span class="close">&times;</span>
 					</div>
 				</div>
+			</div>
+
+			<div class="popup-content">
+
+				
 				<article>
 					Digite um nickname!
 				</article>
-				
+				<article>
+				Nele será salvo suas pontuações nos jogos do quiz!
+			</article>
 				<form>
 					<input autocomplete="off" type="text" id="nameInput" placeholder="Nome" required>
 					<button onclick="btnNovoJogador()">Jogar</button>
 				</form>
 				
 			</div>
-			<article>
-				Nele será salvo suas pontuações nos jogos do quiz!
-			</article>
+			
 		  </div>
 	</div>
 
