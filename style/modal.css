@@ -114,7 +114,9 @@
     justify-content: center;
     margin-left: auto;
     width: 30px;
+    margin-right: 5px;
   }
+
   .x {
     background: #d2d9ff;
     border-radius: 10px;
@@ -122,11 +124,7 @@
     position: relative;
     width: 20px;
   }
-  .playerAndX{
-    display: flex;
-    gap: 0px;
-   margin-left: 30px;
-  }
+
 
   .player{
     align-items: center;

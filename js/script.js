@@ -1,204 +1,190 @@
-
-const menuInicial = document.getElementById('header')
-const gameStart = document.getElementById('main')
-const img = document.getElementById('img')
-/* titulo do quiz */
-const title = document.querySelector('#bra').textContent;
+// Seleção de elementos do DOM
+const menuInicial = document.getElementById('header');
+const gameStart = document.getElementById('main');
 const quiz = document.getElementById('quiz-name');
-quiz.textContent = title;
-let modal = document.querySelector('.modal')
-let nameJogador = document.getElementById('nameJogador');
-
-function displiz(){
-    let final = document.getElementById('final')
-    modal.style.display='flex'
-    final.style.display='grid'
- }
-//localStorage.clear()
-
-const nomeJogador = localStorage.getItem("nomeJogador");
-nomeJogador !== null ? nameJogador.textContent = `Escolha um quiz` : nameJogador.textContent = 'Bem-vindo';
-let avatar = document.getElementById('avatar').textContent = nomeJogador[0]
-
-function clicouNoQuiz(){
-
-  if (!nomeJogador) {
-      popNovoJogador.style.display = 'grid' 
-      return 0;
-  } 
-   
-    //console.log(localStorage)
-    
-    menuInicial.style.display = 'none'
-    gameStart.style.display = 'grid'
-  
-    pegarDados(1)
-}
-
-/* App JS com JSON */
-// article da questao
-let questao = document.querySelector('.questao')
-let instrucoes = document.getElementById('inst')
-let nQuestao = document.querySelector('#nQuestao')
-let pergunta = document.querySelector('#pergunta')
-
-let a = document.querySelector('#a')
-let b = document.querySelector('#b')
-let c = document.querySelector('#c')
-let d = document.querySelector('#d')
-let e = document.querySelector('#e')
-
-let numero = document.querySelector('#numero')
-let total  = document.querySelector('#total')
-
-let totalDeQuestoes = 0
-numero.textContent  = 1
-
-let pontos = 0
-let placar = document.querySelector('#placar')
-
- 
- // VERFICAÇÃO DO ENDERECO DO ARQUIVO JSON
- const url = './js/data.json'
-//FIM DA VERFICAÇÃO
-
-function pegarDados(i) {
-    fetch(url).then(response =>{
-          return response.json();
-        }).then(data => {
-          if(data.erro) {
-            console.log("Erro ao acessar o JSON")
-            return
-          }
-           // passar o quantidade de questoes para a variavel
-          let qtdQuestoes = (data.questoes.length)-1
-          // escrver a qtdQuestoes para total
-          total.textContent = parseInt(qtdQuestoes)
-          // passe o valor de i no parametro
-          atribuirDados(data, i)
-  
-        })
-  } // fim pegarDados
-
-function atribuirDados(data, i) {
-  if(i >= data.questoes.length) {
-    i = 1
-    
-  }
-    let qtdQuestoes = (data.questoes.length)-1
-    nQuestao.textContent = data.questoes[i].numQuestao + '/' + qtdQuestoes
-    pergunta.textContent = data.questoes[i].pergunta
-
-    a.textContent = data.questoes[i].alternativaA
-    b.textContent = data.questoes[i].alternativaB
-    c.textContent = data.questoes[i].alternativaC
-    d.textContent = data.questoes[i].alternativaD
-    e.textContent = data.questoes[i].alternativaE
-    
-    numero.textContent = data.questoes[i].numQuestao
-    
-    let certa = document.querySelector('#correct')
-    certa.value = data.questoes[i].correta
-    //console.log(resposta)
-    return 0;
-}
-
-let bar = document.getElementById("progress");
-let ba = 0
-
-function progresso() {
-    ba = ba + 10;
-    bar.style.width = ba + "%"
-   }
-
-
-
-// COMECAR O QUIZ
-
-function proximaQuestao(numQuestao) {
-  let proxima = parseInt(numQuestao)
-  pegarDados(proxima)
-  }
-
-function verificarSeAcertou(nQuestao, resposta) {
-  progresso()
-  let numeroDaQuestao = nQuestao.value
-  //console.log("Questão " + numeroDaQuestao)
-
-  let respostaEscolhida = resposta.textContent
-  //console.log("" + respostaEscolhida)
-
-  // usar o fetch para pegar os dados
-  pegarDados(numeroDaQuestao)
-
-  let respostaCorrect = correct.value
-  //console.log(respostaCorrect)
-
-  if(respostaEscolhida == respostaCorrect) {
-      //console.log("Acertou")
-      pontos += 10 // pontos = pontos + 10
-  } else {
-      //console.log("Errou!")
- }
-
-  quantidadeDeQuestoes = parseInt(total.textContent)
-  //console.log("Total " + quantidadeDeQuestoes)
-
-  proxima = parseInt(numero.textContent)+1
-  //console.log("Próxima " + proxima)
-
- 
-
-  setTimeout(function() {
-    
-    if(proxima > quantidadeDeQuestoes) {
-      displiz()
-      
-        fimDoJogo() 
-        
-    } else {
-        proximaQuestao(proxima)
-    }
-  }, 50)
-  return 0;
-}
-
-function fimDoJogo() {
-      
-   
-    if (pontos == 0) {
-      placar.textContent =+pontos+' de 100'
-    } else {
-      placar.textContent =`${nomeJogador} você acertou : `+pontos+' de 100'
-    } if(pontos > 70){
-      placar.textContent =`Parabéns ${nomeJogador}! Acertou `+pontos+' de 100'
-    }
-     
-    localStorage.setItem("pontosJogador", pontos);
-
-
-
-    
-  } 
-  
-  const pontosArmazenados = localStorage.getItem("pontosJogador");
+const modal = document.querySelector('.modal');
+const final = document.getElementById('final');
+const nameJogadorElement = document.getElementById('nameJogador');
+const avatarElement = document.getElementById('avatar');
+const popNovoJogador = document.getElementById('popupJogador'); // Certifique-se de ter este elemento no HTML
+const questao = document.querySelector('.questao');
+const instrucoes = document.getElementById('inst');
+const nQuestao = document.querySelector('#nQuestao');
+const pergunta = document.querySelector('#pergunta');
+const a = document.querySelector('#a');
+const b = document.querySelector('#b');
+const c = document.querySelector('#c');
+const d = document.querySelector('#d');
+const e = document.querySelector('#e');
+const numero = document.querySelector('#numero');
+const total = document.querySelector('#total');
+const placar = document.querySelector('#placar');
 const pontosview = document.getElementById('pontos');
-pontosview.textContent = `${pontosArmazenados ? pontosArmazenados : 0}/100`;
+const bar = document.getElementById("progress");
 
-    
-    function rei(){
-        pontos = 0 // zerar placar
-      proximaQuestao(1) }
+// Variáveis globais
+let indiceQuestaoAtual = 1;
+let pontos = 0;
+let dadosQuiz = null;
+let nomeJogador = localStorage.getItem("nomeJogador") || undefined;
 
-    function toHome(){
-      location.reload();
+// URL do arquivo JSON do quiz
+const url = './js/data.json';
+
+// Define o nome do jogador na interface
+nameJogadorElement.textContent = nomeJogador ? `Olá, ${nomeJogador}` : "Escolha um quiz";
+avatarElement.textContent = nomeJogador ? nomeJogador[0] : undefined;
+
+// Define o título do quiz
+quiz.textContent = document.querySelector('#bra').textContent;
+
+// Função para exibir o modal de fim de jogo
+function exibirModalFinal() {
+  modal.style.display = 'flex';
+  final.style.display = 'grid';
+}
+
+// Função para lidar com o clique no botão "Jogar"
+function iniciarQuiz() {
+  if (!nomeJogador) {
+    popNovoJogador.style.display = 'grid';
+    return;
+  }
+
+  menuInicial.style.display = 'none';
+  gameStart.style.display = 'grid';
+
+  carregarDadosQuiz();
+}
+
+// Função para carregar os dados do quiz
+function carregarDadosQuiz() {
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.erro) {
+        console.error("Erro ao acessar o JSON");
+        return;
+      }
+      dadosQuiz = data;
+      iniciarJogo();
+    })
+    .catch(error => {
+      console.error("Erro ao buscar dados:", error);
+    });
+}
+
+// Função para iniciar o jogo após carregar os dados do quiz
+function iniciarJogo() {
+  indiceQuestaoAtual = 1;
+  pontos = 0;
+  atualizarInterface();
+  total.textContent = dadosQuiz.questoes.length;
+  bar.style.width = '0%'; // Reinicia a barra de progresso
+}
+
+// Função para atualizar a interface do jogo
+function atualizarInterface() {
+  const questaoAtual = dadosQuiz.questoes[indiceQuestaoAtual];
+
+  nQuestao.textContent = `${indiceQuestaoAtual + 1}/${dadosQuiz.questoes.length}`;
+  pergunta.textContent = questaoAtual.pergunta;
+  a.textContent = questaoAtual.alternativaA;
+  b.textContent = questaoAtual.alternativaB;
+  c.textContent = questaoAtual.alternativaC;
+  d.textContent = questaoAtual.alternativaD;
+  e.textContent = questaoAtual.alternativaE;
+  //numero.textContent = indiceQuestaoAtual + 1;
+
+  document.getElementById('correct').value = questaoAtual.correta;
+}
+
+// Função para lidar com a resposta do jogador
+function verificarResposta(resposta) {
+  const respostaCorreta = dadosQuiz.questoes[indiceQuestaoAtual].correta;
+
+  if (resposta === respostaCorreta) {
+    pontos += 10;
+  }
+
+  proximaQuestao();
+}
+
+// Função para atualizar a barra de progresso
+function atualizarBarraProgresso() {
+  const progresso = ((indiceQuestaoAtual) / dadosQuiz.questoes.length) * 100;
+  bar.style.width = `${progresso}%`;
+}
+
+// Função para avançar para a próxima questão
+function proximaQuestao() {
+  indiceQuestaoAtual++;
+  atualizarBarraProgresso();
+  console.log(indiceQuestaoAtual)
+// < por que tem 11 questões contando com a template de indice 0
+  if (indiceQuestaoAtual < dadosQuiz.questoes.length) {
+    atualizarInterface();
+  } else {
+    finalizarQuiz();
+  }
+}
+
+// Função para finalizar o quiz
+function finalizarQuiz() {
+  exibirModalFinal();
+  salvarPontuacao()
+  // pontuação final
+  placar.textContent = `Você fez ${pontos} de ${dadosQuiz.questoes.length * 10 - 10}`;
+
+}
+
+// Carrega as pontuações do jogador no modal
+function carregarPontuacoes() {
+  const scoreTableBody = document.getElementById("scoreTableBody");
+  scoreTableBody.innerHTML = ''; // Limpa a tabela
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key !== "nomeJogador") { // Ignora a chave "nomeJogador"
+      const pontuacao = localStorage.getItem(key);
+      const row = scoreTableBody.insertRow();
+      const cell1 = row.insertCell();
+      const cell2 = row.insertCell();
+      cell1.textContent = key; 
+      cell2.textContent = pontuacao; 
     }
+  }
+}
+
+function salvarPontuacao() {
+  const nomeQuiz = document.querySelector('#bra p').textContent; // Obtém o nome do quiz
+  localStorage.setItem(nomeQuiz, pontos); // Salva a pontuação com o nome do quiz como chave
+  carregarPontuacoes(); // Atualiza a tabela de pontuações no modal
+}
+
+// Função para reiniciar o quiz
+function reiniciarQuiz() {
+  iniciarJogo();
+  modal.style.display = 'none';
+  final.style.display = 'none';
+}
+
+// Função para voltar à tela inicial
+function voltarAoInicio() {
+  location.reload();
+}
+
+// Event Listeners para os botões
+const botaoIniciar = document.getElementById('iniciarQuiz'); 
+botaoIniciar.addEventListener('click', iniciarQuiz);
 
 
+const botaoVoltarInicio = document.getElementById('voltarInicio'); 
+botaoVoltarInicio.addEventListener('click', voltarAoInicio);
 
-
-    function mood(){
-      alert('Ok')
-    }
-
-  
+// Event Listeners para as alternativas
+a.addEventListener('click', () => verificarResposta('a'));
+b.addEventListener('click', () => verificarResposta('b'));
+c.addEventListener('click', () => verificarResposta('c'));
+d.addEventListener('click', () => verificarResposta('d'));
+e.addEventListener('click', () => verificarResposta('e'));

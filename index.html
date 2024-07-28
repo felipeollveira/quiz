@@ -8,14 +8,42 @@
 	<link rel="stylesheet" type="text/css" href="style/app.css">
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
 	<link rel="stylesheet" type="text/css" href="style/animat.css">
+	<link rel="stylesheet" type="text/css" href="style/playerModal.css">
 	<link rel="stylesheet" type="text/css" href="style/modalNomeJogador.css">
 	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
 	<title>quiz!</title>
 	
 </head>
 <body>
-	
-	<header id="header">
+		<div class="playerModal" id="playerModal">
+							<div class="modal-content">
+							  <span class="close" onclick="closeModal()">&times;</span>
+							  <div class="player-info">
+								<div class="player-avatar" id="modalAvatar"></div>
+								<h2 id="modalName">Player name</h2>
+							  </div>
+							  <table class="score-table">
+								<thead>
+								  <tr>
+									<th>Quiz</th>
+									<th>Pontuação</th>
+								  </tr>
+								</thead>
+								<tbody id="scoreTableBody">
+									<td>ISIS</td>
+									<td>SKSK</td>
+									
+								</tbody>
+								</table>
+								<section>
+									<button type="submit" onclick="closePlayerModal()">OK</button>
+									<button type="submit" onclick="deletePlayer()">Deletar usuário</button>
+								</section>
+							
+							</div>
+						  </div>
+
+		<header id="header">
 			<h1><strong>Quiz App!</strong></h1>
 			<div class="container">
 				<div class="email" onclick="this.classList.add('expand')">
@@ -28,28 +56,24 @@
 				<div class="to">
 					<div class="to-contents">
 					<div class="top">
-							<div class="avatar-large me" id="avatar" onclick=""></div>
+						<div class="avatar-large me" id="avatar" onclick="openPlayerModal()"></div>
 						<div class="name-large"><span id="nameJogador"></span>!</div>
 					
-						
-						
-						<div class="playerAndX">
-							
-						<div class="player" onclick="limparLocalStorageEAtualizar()" >
-							🧑
-						</div>
+					
+					
+				
 						<div class="x-touch" onclick="document.querySelector('.email').classList.remove('expand');event.stopPropagation();">
 						<div class="x">
 							<div class="line1"></div>
 							<div class="line2"></div>
 						</div>
-						</div>
+					
 					</div>
 					</div>
 					
 					<div class="bottom">
 						
-						<div class="row"  onclick="clicouNoQuiz()">
+						<div class="row" id="iniciarQuiz">
 						<!-- SVG DA BANDEIRA BRASILEIRA-->
 							<svg class="bra" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" text-rendering="geometricPrecision" fill-rule="evenodd" xml:space="preserve" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" viewBox="0 0 100000 70000">
 								<rect y="0" x="0" fill="#00923F" width="1e5" height="7e4"/>
@@ -64,9 +88,6 @@
 							<p>
 								Você conhece a Bandeira Brasileira?
 							</p>
-							<span id="pontos" class="pontuacao">
-
-							</span>
 						
 						</div>
 						</div>
@@ -144,19 +165,19 @@
 			<section class="respostas" id="respostas">
 			
 				<label >
-				<span id="a" value="1A" onclick='verificarSeAcertou(this, this)'></span>
+				<span id="a" value="1A" onclick='verificarResposta("a")'></span>
 				</label>
 				<label >
-				<span id="b" value="1B" onclick='verificarSeAcertou(this, this)'></span>
+				<span id="b" value="1B" onclick='verificarResposta("b")'></span>
 				</label>
 				<label>
-				<span id="c" value="1C" onclick='verificarSeAcertou(this, this)'></span>
+				<span id="c" value="1C" onclick='verificarResposta("c")'></span>
 				</label>
 				<label >
-				<span id="d" value="1D" onclick='verificarSeAcertou(this, this)'></span>
+				<span id="d" value="1D" onclick='verificarResposta("d")'></span>
 				</label>
 				<label >
-				<span id="e" value="1E" onclick='verificarSeAcertou(this, this)'></span>
+				<span id="e" value="1E" onclick='verificarResposta("e")'></span>
 				</label>
 				
 			</section><h6 style="color: white; display: none;" id="nQuestao"></h6>
@@ -173,7 +194,7 @@
 					<input type="hidden" id='numero' name='corect' value='' />
 					<span id="placar"></span>
 					<div class="icons">
-						<img class="home" onclick="toHome()" src="https://www.pngkey.com/png/full/237-2373015_logo-home-png-home-symbol-png-white.png">
+						<img class="home" id="voltarInicio" src="https://www.pngkey.com/png/full/237-2373015_logo-home-png-home-symbol-png-white.png">
 					</div></div>
 				<p id="ditado"></p>
 				</span>	
@@ -188,6 +209,7 @@
 
 <article style="display: none;" id="url">data.json</article>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/playerModal.js"></script>
 <script type="text/javascript" src="js/novoJogador.js"></script>
 
 </html>

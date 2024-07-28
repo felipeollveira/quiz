@@ -1,8 +1,13 @@
-const popNovoJogador = document.getElementById('popupJogador')
+//const popNovoJogador = document.getElementById('popupJogador')
 
 document.querySelector("form").addEventListener("submit", function(event) {
     event.preventDefault();
 });
+
+const modalDigiteNickname = () => {
+    popNovoJogador.style.display = 'grid' 
+
+}
 
 const closePopup = () => {
     popNovoJogador.style.display = 'none'
@@ -11,14 +16,19 @@ const closePopup = () => {
 
 const btnNovoJogador = () => {
     let nomeNovoJogador = document.querySelector('input[type=text]').value;
-    nomeNovoJogador != '' ? closePopup() : 0;
     nomeNovoJogadorFormatado = nomeNovoJogador.trim('')
     localStorage.setItem("nomeJogador", nomeNovoJogadorFormatado);
     localStorage.setItem("pontosJogador", 0);
 
-    return 1
+    setTimeout(() => {
+        location.reload();
+        nomeNovoJogador != '' ? closePopup() : 0;
+
+    }, 300);
 
 }
+
+
 
 function limparLocalStorageEAtualizar(){
     localStorage.clear();

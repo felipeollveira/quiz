@@ -1,0 +1,80 @@
+.playerModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .playerModal h2{
+    color: black;
+  }
+  .playerModal section{
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+    justify-content: center;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    border-radius: 6px;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Estilo para a imagem do jogador */
+  .player-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin: 0 auto 20px;
+    font-size: 4em;
+    color: white;
+    line-height: 100px;
+    text-transform: uppercase;
+  }
+  
+  /* Estilo para a tabela de pontuação */
+  .score-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .score-table th,
+  .score-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .score-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+
+  button[type="submit"]:last-child{
+    background-color: red;
+  }
